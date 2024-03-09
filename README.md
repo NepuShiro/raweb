@@ -22,7 +22,7 @@ To setup RemoteApps, try [RemoteApp Tool](https://github.com/kimmknight/remoteap
 2. Open a new terminal and run `npm init -y` to Initialize the Node Project.
 3. Install express `npm install express`
 4. Install pkg `npm install -g pkg`
-5. Then run `pkg . --targets node14-win-x64` to build the EXE.
+5. Then run `npm run package` to build the EXE.
 
 ## Guides
 

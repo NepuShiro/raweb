@@ -1,0 +1,99 @@
+<!-- index.html -->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAWeb - Remote Applications</title>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            background-image: url(https://i.imgur.com/5PZP56f.png);
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            padding-left: 100px;
+            padding-right: 100px;
+        }
+
+        .app-tile {
+            background-color: rgb(33 0 55 / 90%);
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.003);
+        }
+
+        .app-tile img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .app-tile a {
+            text-decoration: none;
+            color: #333333;
+        }
+
+        .app-tile h3 {
+            margin: 0;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .text-align {
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+
+        .title-font {
+            color: rgb(100,100,100);
+        }
+        
+        .bottom {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="text-align">
+        <h1>Remote
+            <font class="title-font">
+                Apps
+            </font>
+        </h1>
+    </div><br>
+    <div class="container">
+        <!-- Dynamic content will be inserted here -->
+    </div>
+    <div class="bottom">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Toothless-dancing-toothless.gif?20240131071907"
+            alt="GIF 1">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Toothless-dancing-toothless.gif?20240131071907"
+            alt="GIF 2">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Toothless-dancing-toothless.gif?20240131071907"
+            alt="GIF 3">
+    </div>
+</body>
+
+</html>

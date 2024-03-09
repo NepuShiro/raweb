@@ -8,29 +8,30 @@ To setup RemoteApps, try [RemoteApp Tool](https://github.com/kimmknight/remoteap
 
 * A web interface for your RemoteApps (and full-desktop RDP sessions)
 * Webfeed to put RemoteApps in client start menu
-* Optional authentication to provide different apps to different users
 * File type associations on webfeed clients
-* Both ASP and ASP.NET (aspx) versions included (thanks surfchris)
 
-## Download
+## To Install and Run
 
-[Latest](https://github.com/kimmknight/raweb/archive/master.zip)
+1. Download the [Latest Release](https://github.com/NepuShiro/raweb/releases/latest)
+2. Extract all files and follow the [Guide](https://github.com/kimmknight/raweb/wiki/Setup-RAWeb-Web-Interface), just the parts for the RDP files and Image files of which these go to `/public/rdp` or `/public/icon`.
+3. Run the EXE!
 
-## Quick installation
+## To Build
 
-1. Install IIS and ASP features for Windows
-2. Copy the contents of the "asp\wwwroot" folder to your inetpub\wwwroot folder.
+1. Clone this repo into a new folder `git clone https://github.com/NepuShiro/raweb.git`
+2. Open a new terminal and run `npm init -y` to Initialize the Node Project.
+3. Install express `npm install express`
+4. Install pkg `npm install -g pkg`
+5. Then run `pkg . --targets node14-win-x64` to build the EXE.
 
 ## Guides
 
 * [Setup RAWeb Web Interface](https://github.com/kimmknight/raweb/wiki/Setup-RAWeb-Web-Interface)
-* [Setup RAWeb Webfeed with a Self Signed Certificate](https://github.com/kimmknight/raweb/wiki/Setup-RAWeb-Webfeed-with-a-Self-Signed-Certificate)
 * [File type associations for RAWeb webfeed clients](https://github.com/kimmknight/raweb/wiki/File-type-associations-for-RAWeb-webfeed-clients)
-* [Configuring RAWeb for a multi user environment](https://github.com/kimmknight/raweb/wiki/Configuring-RAWeb-for-a-multi-user-environment)
 
 ## Screenshots
 
-![](https://github.com/kimmknight/raweb/wiki/images/screenshots/raweb0020.png)
+![](https://github.com/nepushiro/raweb/docs/images/screenshots/raweb0020.png)
 
 A web interface for your RemoteApps
 

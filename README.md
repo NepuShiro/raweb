@@ -31,7 +31,7 @@ To setup RemoteApps, try [RemoteApp Tool](https://github.com/kimmknight/remoteap
 
 ## Screenshots
 
-![](https://github.com/nepushiro/raweb/docs/images/screenshots/raweb0020.png)
+![](https://github.com/NepuShiro/raweb/blob/master/docs/images/screenshots/raweb0020.png?raw=true)
 
 A web interface for your RemoteApps
 

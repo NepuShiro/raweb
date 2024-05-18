@@ -8,7 +8,7 @@ const app = express();
 const { getRDPValue } = require('./rdpHandler');
 const { generateXMLFeed } = require('./generateXML');
 
-const PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3000;
 
 let baseDir;
 
@@ -18,9 +18,71 @@ if (process.pkg) {
     baseDir = __dirname;
 }
 
+// Function to move Icons from RDP to Icons and vice versa
+function moveIcons(baseDir) {
+    return new Promise((resolve, reject) => {
+        const rdpFolderPath = path.join(baseDir, 'public', 'rdp');
+        const iconFolderPath = path.join(baseDir, 'public', 'icon');
+
+
+        const moveFromRdpToIcon = () => {
+            fs.readdirSync(rdpFolderPath).forEach(file => {
+                if (path.extname(file).toLowerCase() === '.ico') {
+                    const sourcePath = path.join(rdpFolderPath, file);
+                    const destinationPath = path.join(iconFolderPath, file);
+
+                    new Promise((resolve, reject) => {
+                        try {
+                            fs.renameSync(sourcePath, destinationPath);
+                            resolve();
+                        } catch (error) {
+                            reject(error);
+                        }
+                    }).then(() => {
+                        console.log(`Moved ${file} from RDP to Icon`);
+                    }).catch((error) => {
+                        console.error(`Failed to move ${file}:`, error);
+                    });
+                }
+            });
+        };
+
+        const moveToRdpFromIcon = () => {
+            fs.readdirSync(iconFolderPath).forEach(file => {
+                if (path.extname(file).toLowerCase() === '.rdp') {
+                    const sourcePath = path.join(iconFolderPath, file);
+                    const destinationPath = path.join(rdpFolderPath, file);
+
+                    new Promise((resolve, reject) => {
+                        try {
+                            fs.renameSync(sourcePath, destinationPath);
+                            resolve();
+                        } catch (error) {
+                            reject(error);
+                        }
+                    }).then(() => {
+                        console.log(`Moved ${file} from Icon to RDP`);
+                    }).catch((error) => {
+                        console.error(`Failed to move ${file}:`, error);
+                    });
+                }
+            });
+        };
+
+        moveFromRdpToIcon();
+        moveToRdpFromIcon();
+
+        resolve();
+    });
+}
+
+// Static files to serve
 app.use(express.static(path.join(baseDir, 'public')));
 
-app.get('/', (req, res) => {
+// Route for default webpage
+app.get('/', async (req, res) => {
+    await moveIcons(baseDir)
+
     const rdpFolderPath = path.join(baseDir, 'public', 'rdp');
     const files = fs.readdirSync(rdpFolderPath);
     let htmlContent = fs.readFileSync(path.join(baseDir, 'index.html'), 'utf8');
@@ -54,22 +116,26 @@ app.get('/', (req, res) => {
 });
 
 // Route to generate the XML feed for /webfeed.aspx
-app.get('/webfeed.aspx', (req, res) => {
+app.get('/webfeed.aspx', async (req, res) => {
+    await moveIcons(baseDir)
     generateXMLFeed(res);
 });
 
 // Route to generate the XML feed for /rdweb/feed/webfeed.aspx
-app.get('/rdweb/feed/webfeed.aspx', (req, res) => {
+app.get('/rdweb/feed/webfeed.aspx', async (req, res) => {
+    await moveIcons(baseDir)
     generateXMLFeed(res);
 });
 
 // Route to generate the XML feed for /api/feeddiscovery/webfeeddiscovery.aspx
-app.get('/api/feeddiscovery/webfeeddiscovery.aspx', (req, res) => {
+app.get('/api/feeddiscovery/webfeeddiscovery.aspx', async (req, res) => {
+    await moveIcons(baseDir)
     generateXMLFeed(res);
 });
 
 // Route to serve RDP files
-app.get('/rdp/:filename', (req, res) => {
+app.get('/rdp/:filename', async (req, res) => {
+    await moveIcons(baseDir)
     const rdpFolderPath = path.join(baseDir, 'public', 'rdp');
     const filePath = path.join(rdpFolderPath, req.params.filename);
 
@@ -81,6 +147,7 @@ app.get('/rdp/:filename', (req, res) => {
     }
 });
 
+// Start the server
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
